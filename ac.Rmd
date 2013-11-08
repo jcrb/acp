@@ -1,0 +1,33 @@
+Analyse des correspondances
+========================================================
+Tutoriel sur l'analyse des corrspondances (AC) en R avec une application pratique a l'archeologie.
+
+source
+------
+http://cainarchaeology.weebly.com/
+
+```{r packages,echo=FALSE}
+install.packages(c("ca", "FactoMineR", "vcd"))
+```
+
+
+Aim of Correspondence Analysis
+------------------------------
+
+CA is a statistical exploratory tool whose popularity has steadily grown in the social sciences (see, e.g., the papers in Blasius, Greenacre 1998) as well as in archaeology. Even though in the latter field CA has been slow in gaining popularity, with the exception of early groundbreaking studies (Bølviken et al. 1982; Djindjian 1985; Madsen 1989; Gillis 1990), today it is used for many purposes, including intrasite activity areas research (Kuijt, Goodale 2009; Alberti 2012, 2013), burial assemblages analysis (Wallin 2010), on-site distribution of faunal remains (Potter 2000; Morris 2008), distribution of drinking pottery types in the context of cultures contact (Pitts 2005), stratigraphy and formation processes (Mameli et al. 2002; Pavùk 2010), seriation and chronology (Bellanger et al. 2008; Peeples, Schachner 2012).
+
+CA represente graphiuememt les dependance entre les lignes et les colonnes d'une table de contingence. L.affichage visuel des donnees faciite l'interpretation et favorise l'emerence de motifs. La technique reduit le nombre de dimensions necessaires pour afficher les points en decomposant l'inertie totale (ie la variabilite) de la table et en definissant le nombre minimal de dimensions necessaires pour representer la variabilite des donnees.
+
+The graphical output of CA is a scatterplot where rows and/or columns are represented as points in a sequence of low-dimensional spaces. These spaces have the properties to retain a decreasing amount of the total inertia. The first dimension will capture the highest amount, while the second will be associated with the second largest proportion, and so on. 
+
+On the scatterplot, the distance between data points of the same type (i.e., row-to-row) is related to the degree to which the rows have similar profiles (i.e., relative frequencies of column categories). The same applies for the column-to-column distance. The more the points are close to one another, the more similar their profiles will be. The origin of the axes represents the centroid (i.e., the average profile), and can be conceptualized as the “place” where there is no difference between profiles or, more formally (and to recall the chi-square terminology), it represents the hypothesis of homogeneity of the profiles (Greenacre 2007, 32). The more different are the latter, the more the profile points will be spread on the plane away from the centroid. 
+
+As for the relative distances between points of different type (i.e., row-to-column), it tells the analyst something about the “correspondence” between the categories that made up the table. In other words, the more a row point is close to a column point, the greater (i.e., the more distant from the average) is the proportion of that column category on the row profile. 
+
+Outliers are row/column profiles that dramatically deviate from the others, for example, for having very small (or very large) frequencies and/or very few categories. These affect the graphical output of CA. As stressed by Baxter, Cool (2010, 220), these points will lie far away from the rest of the cloud of points, dominating the plot, and causing the other profile points to cluster together. It has to be stressed, however, that the problem is only a matter of graphical layout since it does not affect the determination of the CA dimensions as Greenacre (2007, 269-270; 2011) has demonstrated. It will be shown later on how the “correct” visualization (i.e., not influenced by outliers) and the interpretation of CA plots can be assured even in the presence of outlier profile points. This can be accomplished by using the Greenacre’s Standard Biplot (Greenacre 2007, 101-102; also called Contribution Biplot in Greenacre 2011, 9) that can be easily obtained by the package ‘ca’ via the R script here described.
+
+```{r}
+source("ac.R")
+```
+
+
